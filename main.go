@@ -21,15 +21,12 @@ func main() {
 	image := os.Args[1]
 	iter, err := strconv.Atoi(os.Args[2])
 	if err != nil {
-		log.Fatal("Error parsing iterations count: %v", err)
+		log.Fatalf("Error parsing iterations count: %v", err)
 	}
 
-	// image := "node:0.10.31-onbuild"
 	log.Printf("Image: %s", image)
 	for i := 0; i < iter; i++ {
 		log.Printf("Run %d:", i)
-
-		// Clear the image with `docker rmi`
 		if err := rmi(image); err != nil {
 			log.Fatal(err)
 		}
