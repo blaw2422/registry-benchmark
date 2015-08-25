@@ -19,12 +19,16 @@ The program will write logs to stderr, and duration of each `docker pull`
 
 The image for this program exists on [Docker Hub](https://hub.docker.com/r/ahmetalpbalkan/registry-benchmark/):
 
-    docker pull ahmetalpbalkan/registry-benchmark
+```sh
+docker pull ahmetalpbalkan/registry-benchmark
+```
 
 In order to test pull speed of the Docker engine you are running at:
 
-    docker run -it -v /var/run/docker.sock:/var/run/docker.sock \
-        ahmetalpbalkan/registry-benchmark <image> <iterations>
+```sh
+$ docker run -it -v /var/run/docker.sock:/var/run/docker.sock \
+    ahmetalpbalkan/registry-benchmark <image> <iterations>
+```
 
 If you only want to get the results from a run (attach only to stderr)
 you need to remove `-t` flag and add `-a stdout` to docker command:
