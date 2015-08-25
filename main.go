@@ -9,11 +9,8 @@ import (
 	"time"
 )
 
-func init() {
-	log.SetOutput(os.Stderr)
-}
-
 func main() {
+	log.SetOutput(os.Stderr)
 	if len(os.Args) != 3 {
 		log.Fatalf("Usage: %s <image[:tag]> <iterations>", os.Args[0])
 	}
