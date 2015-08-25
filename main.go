@@ -14,7 +14,7 @@ func init() {
 }
 
 func main() {
-	if len(os.Args) < 3 {
+	if len(os.Args) != 3 {
 		log.Fatalf("Usage: %s <image[:tag]> <iterations>", os.Args[0])
 	}
 
