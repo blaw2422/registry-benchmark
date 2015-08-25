@@ -23,8 +23,21 @@ The image for this program exists on [Docker Hub](https://hub.docker.com/r/ahmet
 
 In order to test pull speed of the Docker engine you are running at:
 
-    docker run -it -v /var/run/docker.sock/:/var/run/docker.sock/ \
+    docker run -it -v /var/run/docker.sock:/var/run/docker.sock \
         ahmetalpbalkan/registry-benchmark <image> <iterations>
+
+If you only want to get the results from a run (attach only to stderr)
+you need to remove `-t` flag and add `-a stdout` to docker command:
+
+```sh
+~  docker run -i -a stdout -v /var/run/docker.sock:/var/run/docker.sock ahmetalpbalkan/registry-benchmark python:latest 5
+7
+6
+10
+8
+5
+```
+
 
 ## Author
 

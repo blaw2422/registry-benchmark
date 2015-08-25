@@ -21,6 +21,9 @@ func main() {
 		log.Fatalf("Error parsing iterations count: %v", err)
 	}
 
+	// Clean after we finish the run
+	defer rmi(image) // ignore error
+
 	log.Printf("Image: %s", image)
 	for i := 0; i < iter; i++ {
 		log.Printf("Run %d:", i)
