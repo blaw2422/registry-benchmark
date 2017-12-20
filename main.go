@@ -24,6 +24,8 @@ func main() {
 	// Clean after we finish the run
 	defer rmi(image) // ignore error
 
+	tryLogin()
+
 	log.Printf("Image: %s", image)
 	for i := 0; i < iter; i++ {
 		log.Printf("Run %d:", i)
@@ -39,6 +41,31 @@ func main() {
 		fmt.Printf("%d\n", int64(d.Seconds()))
 	}
 
+}
+
+func tryLogin() {
+  var flags []string
+  flags = append(flags, "login")
+
+  if os.Getenv("DOCKER_USERNAME") != "" {
+    flags = append(flags, "-u", os.Getenv("DOCKER_USERNAME"))
+  }
+
+  if os.Getenv("DOCKER_PASSWORD") != "" {
+    flags = append(flags, "-p", os.Getenv("DOCKER_PASSWORD"))
+  }
+
+  if os.Getenv("DOCKER_EMAIL") != "" {
+    flags = append(flags, "-e", os.Getenv("DOCKER_EMAIL"))
+  }
+
+  if os.Getenv("DOCKER_SERVER") != "" {
+    flags = append(flags, os.Getenv("DOCKER_SERVER"))
+  }
+
+  if res, err := dockerCmd(flags...); err != nil {
+    log.Fatalf("login failed: %s: %s", res, err)
+  }
 }
 
 func rmi(image string) error {

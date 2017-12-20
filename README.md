@@ -42,6 +42,12 @@ you need to remove `-t` flag and add `-a stdout` to docker command:
 5
 ```
 
+If your docker registry requires authentication, use the following environment variables:
+ * DOCKER_EMAIL
+ * DOCKER_SERVER
+ * DOCKER_USERNAME
+ * DOCKER_PASSWORD
+
 
 ## Author
 
